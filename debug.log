@@ -1,6 +1,15 @@
+[CLOUDSCRAPER] Trying https://twidouga.net/realtime_t.php...
+[CLOUDSCRAPER] Status 403
+[CURL_CFFI] Trying https://twidouga.net/realtime_t.php...
+[CURL_CFFI] Status 403
+[DRISSIONPAGE] Error: No module named 'DrissionPage'
+[PLAYWRIGHT_STEALTH] Error: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/playwright_stealth/__init__.py)
+[CLOUDSCRAPER] Trying https://twidouga.net/ko/realtime_t.php...
+[CLOUDSCRAPER] Status 403
+[CURL_CFFI] Trying https://twidouga.net/ko/realtime_t.php...
+[CURL_CFFI] Status 403
+[DRISSIONPAGE] Error: No module named 'DrissionPage'
+[PLAYWRIGHT_STEALTH] Error: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/playwright_stealth/__init__.py)
 
-=== Phase 0: GitHub Lists ===
-[GITHUB LIST] Found 35
-
-=== RESULT: 30 videos saved ===
-Sources: ['github_list_direct', 'github_list']
+=== FINAL RESULT: 0 videos ===
+Sources: []
