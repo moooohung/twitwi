@@ -1,45 +1,6 @@
 
-=== Phase 1: twidouga.net ===
-[STEALTH] Trying https://twidouga.net/realtime_t.php...
-[STEALTH ERROR] https://twidouga.net/realtime_t.php: Page.goto: net::ERR_TOO_MANY_REDIRECTS at https://twidouga.net/realtime_t.php
-Call log:
-  - navigating to "https://twidouga.net/realtime_t.php", waiting until "networkidle"
+=== Phase 0: GitHub Lists ===
+[GITHUB LIST] Found 35
 
-[STEALTH] Trying https://twidouga.net/ko/realtime_t.php...
-[STEALTH ERROR] https://twidouga.net/ko/realtime_t.php: Page.goto: net::ERR_TOO_MANY_REDIRECTS at https://twidouga.net/ko/realtime_t.php
-Call log:
-  - navigating to "https://twidouga.net/ko/realtime_t.php", waiting until "networkidle"
-
-
-=== Phase 2: Nitter Mirrors ===
-[NITTER] Trying https://nitter.net...
-[NITTER] Found 0 from https://nitter.net
-[NITTER] Trying https://nitter.1d4.us...
-[NITTER ERROR] https://nitter.1d4.us: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://n
-[NITTER] Trying https://nitter.kavin.rocks...
-[NITTER] Trying https://nitter.unixfox.eu...
-[NITTER ERROR] https://nitter.unixfox.eu: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://n
-[NITTER] Trying https://nitter.fdn.fr...
-[NITTER ERROR] https://nitter.fdn.fr: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://n
-[NITTER] Trying https://nitter.it...
-[NITTER ERROR] https://nitter.it: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://n
-[NITTER] Trying https://nitter.namazso.eu...
-[NITTER ERROR] https://nitter.namazso.eu: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://n
-[NITTER] Trying https://nitter.nixnet.services...
-
-=== Phase 3: Alt Sources ===
-[ALT] Got 163942 bytes from twittrend_jp
-[ALT] Playwright trying https://getdaytrends.com/south-korea/...
-[ALT] Got 14 bytes from daytrends_kr
-[ALT] Got 51154 bytes from trends24_kr
-[ALT] Total found: 0
-
-=== Phase 4: YouTube Shorts ===
-[YTSHORTS ERROR] [Errno 2] No such file or directory: 'yt-dlp'
-
-=== Phase 5: Reddit Viral ===
-[URLLIB] Failed https://www.reddit.com/r/TikTokCringe/hot.json?limit=50: HTTP Error 403: Blocked
-[REDDIT] Found 0
-
-=== RESULT: 0 videos saved ===
-Sources: []
+=== RESULT: 30 videos saved ===
+Sources: ['github_list_direct', 'github_list']
