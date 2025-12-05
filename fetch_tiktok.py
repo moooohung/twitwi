@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-TikTok 트렌딩 영상 크롤러
-- TikTok은 Cloudflare가 없어서 크롤링이 쉬움
-- yt-dlp로 트렌딩 페이지에서 영상 추출
+TikTok 추천/트렌딩 영상 크롤러
+- ProxiTok 트렌딩 페이지에서 랜덤 영상 수집
+- yt-dlp로 트렌딩 해시태그 영상 수집
+- 특정 계정이 아닌 무작위 트렌딩 영상만
 """
 
 import json
@@ -10,55 +11,128 @@ import re
 import subprocess
 import os
 from datetime import datetime, timezone
+import urllib.request
+import random
 
-def get_trending_from_ytdlp():
-    """yt-dlp로 TikTok 트렌딩 가져오기"""
+
+def get_trending_from_proxitok():
+    """ProxiTok 트렌딩 페이지에서 영상 가져오기"""
     videos = []
     
-    # TikTok 트렌딩/추천 URL들
-    trending_urls = [
-        # 트렌딩 페이지 (지역별)
-        "https://www.tiktok.com/foryou",  # For You 페이지
-        "https://www.tiktok.com/trending",
-        # 인기 해시태그
-        "https://www.tiktok.com/tag/fyp",
-        "https://www.tiktok.com/tag/viral",
-        "https://www.tiktok.com/tag/funny",
+    # ProxiTok 인스턴스들 (TikTok 프라이버시 프론트엔드)
+    instances = [
+        "https://proxitok.pabloferreiro.es",
+        "https://proxitok.pussthecat.org",
+        "https://tok.habedieeh.re",
+        "https://proxitok.lunar.icu",
+        "https://tik.hostux.net",
+        "https://proxitok.privacy.qvarford.net",
+        "https://tok.artemislena.eu",
     ]
     
-    # 인기 계정들 (최신 영상)
-    popular_accounts = [
-        "@bts_official_bighit",
-        "@blackpinkofficial", 
-        "@twice_tiktok_official",
-        "@aikiplanet",
-        "@bayashi.tiktok",
-        "@jaboratory_0310",
-        "@sagawa_fuji",
-        "@mrbeast",
-        "@charlidamelio",
-        "@khloekardashian",
-        "@addisonre",
-        "@bellapoarch",
-        "@zachking",
-        "@willsmith",
-        "@therock",
-    ]
+    print("[PROXITOK] Scanning trending pages...")
     
-    print("[YTDLP] Fetching from popular accounts...")
-    
-    for account in popular_accounts:
+    for instance in instances:
         try:
-            # yt-dlp로 계정의 최신 영상 3개 가져오기
-            url = f"https://www.tiktok.com/{account}"
+            # 트렌딩 페이지
+            url = f"{instance}/trending"
+            
+            req = urllib.request.Request(url, headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0",
+                "Accept": "text/html,application/xhtml+xml",
+            })
+            
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                html = resp.read().decode('utf-8', errors='ignore')
+                
+                # 비디오 ID 패턴들
+                # ProxiTok URL: /@username/video/1234567890
+                patterns = [
+                    r'/@([^/]+)/video/(\d{18,20})',  # /@user/video/id
+                    r'/video/(\d{18,20})',  # /video/id
+                    r'"id"\s*:\s*"(\d{18,20})"',  # JSON id
+                ]
+                
+                found_videos = set()
+                
+                for pattern in patterns:
+                    matches = re.findall(pattern, html)
+                    for match in matches:
+                        if isinstance(match, tuple):
+                            # /@username/video/id 패턴
+                            username, video_id = match
+                            if video_id not in found_videos and len(video_id) >= 18:
+                                found_videos.add(video_id)
+                                videos.append({
+                                    "id": video_id,
+                                    "url": f"https://www.tiktok.com/@{username}/video/{video_id}",
+                                    "title": "",
+                                    "source": f"proxitok_trending",
+                                    "username": username
+                                })
+                        else:
+                            # video/id만 있는 패턴
+                            video_id = match
+                            if video_id not in found_videos and len(video_id) >= 18:
+                                found_videos.add(video_id)
+                                videos.append({
+                                    "id": video_id,
+                                    "url": f"https://www.tiktok.com/@a/video/{video_id}",
+                                    "title": "",
+                                    "source": "proxitok_trending"
+                                })
+                
+                if len(found_videos) > 0:
+                    print(f"  {instance}: found {len(found_videos)} trending videos")
+                    break  # 하나만 성공하면 충분
+                    
+        except Exception as e:
+            print(f"  {instance}: {str(e)[:40]}")
+    
+    print(f"[PROXITOK] Total: {len(videos)} trending videos")
+    return videos
+
+
+def get_trending_hashtags():
+    """yt-dlp로 트렌딩 해시태그 영상 가져오기"""
+    videos = []
+    
+    # 글로벌 인기 해시태그들 (지속적으로 인기 있는 것들)
+    trending_tags = [
+        "fyp",
+        "foryou", 
+        "viral",
+        "trending",
+        "funny",
+        "comedy",
+        "dance",
+        "music",
+        "cute",
+        "satisfying",
+        "challenge",
+        "meme",
+        "anime",
+        "kpop",
+        "food",
+    ]
+    
+    # 랜덤으로 3개 태그 선택
+    selected_tags = random.sample(trending_tags, min(5, len(trending_tags)))
+    
+    print(f"[YTDLP] Fetching from trending hashtags: {selected_tags}")
+    
+    for tag in selected_tags:
+        try:
+            url = f"https://www.tiktok.com/tag/{tag}"
             
             result = subprocess.run([
                 "yt-dlp",
                 "--flat-playlist",
-                "--playlist-end", "3",
+                "--playlist-end", "10",  # 각 태그에서 10개씩
                 "-j",
+                "--no-warnings",
                 url
-            ], capture_output=True, text=True, timeout=30)
+            ], capture_output=True, text=True, timeout=60)
             
             if result.returncode == 0:
                 for line in result.stdout.strip().split('\n'):
@@ -68,132 +142,75 @@ def get_trending_from_ytdlp():
                             video_url = data.get("url") or data.get("webpage_url")
                             video_id = data.get("id")
                             title = data.get("title", "")
+                            uploader = data.get("uploader", "")
                             
                             if video_url and video_id:
-                                videos.append({
-                                    "id": video_id,
-                                    "url": video_url,
-                                    "title": title[:100] if title else "",
-                                    "account": account,
-                                    "source": "ytdlp_account"
-                                })
-                                print(f"  {account}: {video_id}")
+                                # 중복 체크
+                                if video_id not in [v["id"] for v in videos]:
+                                    videos.append({
+                                        "id": video_id,
+                                        "url": video_url,
+                                        "title": title[:100] if title else "",
+                                        "username": uploader,
+                                        "tag": tag,
+                                        "source": f"ytdlp_tag_{tag}"
+                                    })
                         except json.JSONDecodeError:
                             continue
                             
+                print(f"  #{tag}: found {len([v for v in videos if v.get('tag') == tag])} videos")
+                            
         except subprocess.TimeoutExpired:
-            print(f"  {account}: timeout")
+            print(f"  #{tag}: timeout")
         except Exception as e:
-            print(f"  {account}: {str(e)[:30]}")
+            print(f"  #{tag}: {str(e)[:30]}")
     
+    print(f"[YTDLP] Total from hashtags: {len(videos)} videos")
     return videos
 
 
-def get_trending_from_api():
-    """TikTok 비공식 API로 트렌딩 가져오기"""
-    import urllib.request
-    
+def get_discover_page():
+    """TikTok Discover 페이지에서 영상 가져오기"""
     videos = []
     
-    # 인기 RSS/API 소스들
-    sources = [
-        # TikTok RSS (비공식)
-        "https://proxitok.pabloferreiro.es/api/trending",
-        # ProxiTok 인스턴스들
-        "https://proxitok.pussthecat.org/trending",
-        "https://proxitok.privacy.qvarford.net/trending",
-    ]
-    
-    print("[API] Trying ProxiTok instances...")
-    
-    for api_url in sources:
-        try:
-            req = urllib.request.Request(api_url, headers={
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0"
-            })
-            
-            with urllib.request.urlopen(req, timeout=15) as resp:
-                html = resp.read().decode('utf-8', errors='ignore')
-                
-                # TikTok 비디오 URL 패턴
-                pattern = r'(?:tiktok\.com/@[\w.-]+/video/|video/)(\d+)'
-                matches = re.findall(pattern, html)
-                
-                for video_id in matches[:30]:
-                    if video_id not in [v["id"] for v in videos]:
-                        videos.append({
-                            "id": video_id,
-                            "url": f"https://www.tiktok.com/@/video/{video_id}",
-                            "title": "",
-                            "source": "proxitok"
-                        })
-                
-                if len(matches) > 0:
-                    print(f"  {api_url}: found {len(matches)} videos")
-                    break
-                    
-        except Exception as e:
-            print(f"  {api_url}: {str(e)[:30]}")
-    
-    return videos
-
-
-def get_from_scraper():
-    """웹 스크래핑으로 TikTok 영상 가져오기"""
-    import urllib.request
-    
-    videos = []
-    
-    # TikTok 직접 스크래핑 (headless browser 없이)
-    # TikTok 메인 페이지 HTML에서 video ID 추출
-    
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml",
-        "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8",
-    }
-    
-    # 인기 태그 페이지들
-    tag_urls = [
-        ("https://www.tiktok.com/tag/fyp", "fyp"),
-        ("https://www.tiktok.com/tag/viral", "viral"),
-        ("https://www.tiktok.com/tag/funny", "funny"),
-        ("https://www.tiktok.com/tag/kpop", "kpop"),
-        ("https://www.tiktok.com/tag/anime", "anime"),
-    ]
-    
-    print("[SCRAPER] Trying TikTok tag pages...")
-    
-    for url, tag in tag_urls:
-        try:
-            req = urllib.request.Request(url, headers=headers)
-            with urllib.request.urlopen(req, timeout=20) as resp:
-                html = resp.read().decode('utf-8', errors='ignore')
-                
-                # video ID 패턴들
-                patterns = [
-                    r'"id"\s*:\s*"(\d{18,20})"',  # JSON 내 ID
-                    r'/video/(\d{18,20})',  # URL 패턴
-                    r'video-(\d{18,20})',  # 클래스 패턴
-                ]
-                
-                for pattern in patterns:
-                    matches = re.findall(pattern, html)
-                    for video_id in matches[:10]:
-                        if video_id not in [v["id"] for v in videos] and len(video_id) >= 18:
+    try:
+        # yt-dlp로 Discover 페이지 가져오기
+        result = subprocess.run([
+            "yt-dlp",
+            "--flat-playlist",
+            "--playlist-end", "30",
+            "-j",
+            "--no-warnings",
+            "https://www.tiktok.com/explore"
+        ], capture_output=True, text=True, timeout=90)
+        
+        if result.returncode == 0:
+            for line in result.stdout.strip().split('\n'):
+                if line:
+                    try:
+                        data = json.loads(line)
+                        video_url = data.get("url") or data.get("webpage_url")
+                        video_id = data.get("id")
+                        title = data.get("title", "")
+                        uploader = data.get("uploader", "")
+                        
+                        if video_url and video_id:
                             videos.append({
                                 "id": video_id,
-                                "url": f"https://www.tiktok.com/@/video/{video_id}",
-                                "title": "",
-                                "tag": tag,
-                                "source": "scraper"
+                                "url": video_url,
+                                "title": title[:100] if title else "",
+                                "username": uploader,
+                                "source": "ytdlp_explore"
                             })
-                
-                if len(videos) > 0:
-                    print(f"  {tag}: found {len(videos)} videos so far")
-                    
-        except Exception as e:
-            print(f"  {tag}: {str(e)[:40]}")
+                    except json.JSONDecodeError:
+                        continue
+                        
+            print(f"[DISCOVER] Found {len(videos)} videos from explore page")
+                        
+    except subprocess.TimeoutExpired:
+        print("[DISCOVER] Timeout")
+    except Exception as e:
+        print(f"[DISCOVER] Error: {str(e)[:40]}")
     
     return videos
 
@@ -202,40 +219,38 @@ async def main():
     all_videos = []
     seen_ids = set()
     
-    # 1. yt-dlp로 인기 계정에서 가져오기
-    ytdlp_videos = get_trending_from_ytdlp()
-    for v in ytdlp_videos:
+    # 1. ProxiTok 트렌딩 (가장 쉬움)
+    proxitok_videos = get_trending_from_proxitok()
+    for v in proxitok_videos:
         if v["id"] not in seen_ids:
             seen_ids.add(v["id"])
             all_videos.append(v)
     
-    print(f"\n[YTDLP] Got {len(ytdlp_videos)} videos")
-    
-    # 2. ProxiTok API
+    # 2. yt-dlp로 트렌딩 해시태그
     if len(all_videos) < 50:
-        api_videos = get_trending_from_api()
-        for v in api_videos:
+        hashtag_videos = get_trending_hashtags()
+        for v in hashtag_videos:
             if v["id"] not in seen_ids:
                 seen_ids.add(v["id"])
                 all_videos.append(v)
-        print(f"[API] Got {len(api_videos)} additional videos")
     
-    # 3. 직접 스크래핑 (fallback)
+    # 3. Discover/Explore 페이지
     if len(all_videos) < 30:
-        scraper_videos = get_from_scraper()
-        for v in scraper_videos:
+        discover_videos = get_discover_page()
+        for v in discover_videos:
             if v["id"] not in seen_ids:
                 seen_ids.add(v["id"])
                 all_videos.append(v)
-        print(f"[SCRAPER] Got {len(scraper_videos)} additional videos")
     
-    # 결과 저장
+    # 결과 셔플 (랜덤화)
+    random.shuffle(all_videos)
     all_videos = all_videos[:100]
     
     output = {
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "count": len(all_videos),
         "platform": "tiktok",
+        "type": "trending_random",  # 추천탭 무작위
         "sources_used": list(set(v.get("source", "unknown") for v in all_videos)),
         "videos": all_videos,
     }
@@ -248,7 +263,7 @@ async def main():
     with open("tiktok_urls.txt", "w", encoding="utf-8") as f:
         f.write("\n".join(urls))
     
-    print(f"\n=== FINAL: {len(all_videos)} TikTok videos ===")
+    print(f"\n=== FINAL: {len(all_videos)} TikTok trending videos ===")
     print(f"Sources: {output['sources_used']}")
 
 
