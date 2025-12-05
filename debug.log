@@ -1,15 +1,49 @@
-[CLOUDSCRAPER] Trying https://twidouga.net/realtime_t.php...
-[CLOUDSCRAPER] Status 403
-[CURL_CFFI] Trying https://twidouga.net/realtime_t.php...
-[CURL_CFFI] Status 403
-[DRISSIONPAGE] Error: No module named 'DrissionPage'
-[PLAYWRIGHT_STEALTH] Error: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/playwright_stealth/__init__.py)
-[CLOUDSCRAPER] Trying https://twidouga.net/ko/realtime_t.php...
-[CLOUDSCRAPER] Status 403
-[CURL_CFFI] Trying https://twidouga.net/ko/realtime_t.php...
-[CURL_CFFI] Status 403
-[DRISSIONPAGE] Error: No module named 'DrissionPage'
-[PLAYWRIGHT_STEALTH] Error: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/playwright_stealth/__init__.py)
+[NODRIVER] Trying https://twidouga.net/realtime_t.php...
+[NODRIVER] Error: 
+                ---------------------
+                Failed to connect to browser
+                ---------------------
+                One of the causes could be when you are running as root.
+                In that case you need to pass no_sandbox=True 
+                
+[CLOUDSCRAPER_JS] Trying https://twidouga.net/realtime_t.php...
+[PLAYWRIGHT_STEALTH] Trying https://twidouga.net/realtime_t.php...
+[PLAYWRIGHT_STEALTH] Error: Page.goto: net::ERR_TOO_MANY_REDIRECTS at https://twidouga.net/realtime_t.php
+Call log:
+  - navigating to "https://twidouga.net/realtime_t.php", waiting until "load"
 
-=== FINAL RESULT: 0 videos ===
+[CURL_CFFI_SESSION] Trying https://twidouga.net/realtime_t.php...
+[CURL_CFFI_SESSION] Main page: 403
+[CURL_CFFI_SESSION] Status 403
+[NODRIVER] Trying https://twidouga.net/ko/realtime_t.php...
+[NODRIVER] Error: object NoneType can't be used in 'await' expression
+[CLOUDSCRAPER_JS] Trying https://twidouga.net/ko/realtime_t.php...
+[PLAYWRIGHT_STEALTH] Trying https://twidouga.net/ko/realtime_t.php...
+[PLAYWRIGHT_STEALTH] Error: Page.goto: net::ERR_TOO_MANY_REDIRECTS at https://twidouga.net/ko/realtime_t.php
+Call log:
+  - navigating to "https://twidouga.net/ko/realtime_t.php", waiting until "load"
+
+[CURL_CFFI_SESSION] Trying https://twidouga.net/ko/realtime_t.php...
+[CURL_CFFI_SESSION] Main page: 403
+[CURL_CFFI_SESSION] Status 403
+
+=== FINAL: 0 videos ===
 Sources: []
+Loop <_UnixSelectorEventLoop running=False closed=True debug=False> that handles pid 3136 is closed
+successfully removed temp profile /tmp/uc_9muhlpbw
+successfully removed temp profile /tmp/uc_z2279k0j
+Exception ignored in: <function BaseSubprocessTransport.__del__ at 0x7f8025b5d300>
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/asyncio/base_subprocess.py", line 126, in __del__
+    self.close()
+  File "/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/asyncio/base_subprocess.py", line 104, in close
+    proto.pipe.close()
+  File "/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/asyncio/unix_events.py", line 765, in close
+    self.write_eof()
+  File "/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/asyncio/unix_events.py", line 751, in write_eof
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/asyncio/base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/asyncio/base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
