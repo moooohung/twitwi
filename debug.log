@@ -1,33 +1,43 @@
-[TOR] Trying https://twidouga.net/realtime_t.php...
-[TOR] Status 403
-[PROXY] Trying scrape.do...
-[PROXY] Error: HTTP Error 400: Bad Request
-[CURL_ROTATE] Trying https://twidouga.net/realtime_t.php...
-[CURL_ROTATE] chrome110: 403
-[CURL_ROTATE] chrome116 failed: Failed to perform, curl: (47) Maximum (3
-[CURL_ROTATE] chrome120: 403
-[CURL_ROTATE] edge101: 403
-[CURL_ROTATE] safari15_3: 403
-[PLAYWRIGHT_PROXY] Trying https://twidouga.net/realtime_t.php...
-[PLAYWRIGHT_PROXY] Proxy failed: Page.goto: net::ERR_PROXY_CONNECTION_FAI
-[PLAYWRIGHT_PROXY] Proxy failed: Page.goto: net::ERR_PROXY_CONNECTION_FAI
-[TOR] Trying https://twidouga.net/ko/realtime_t.php...
-[TOR] Status 403
-[PROXY] Trying scrape.do...
-[PROXY] Error: HTTP Error 400: Bad Request
-[CURL_ROTATE] Trying https://twidouga.net/ko/realtime_t.php...
-[CURL_ROTATE] chrome110 failed: Failed to perform, curl: (47) Maximum (3
-[CURL_ROTATE] chrome116: 403
-[CURL_ROTATE] chrome120: 403
-[CURL_ROTATE] edge101: 403
-[CURL_ROTATE] safari15_3: 403
-[PLAYWRIGHT_PROXY] Trying https://twidouga.net/ko/realtime_t.php...
-[PLAYWRIGHT_PROXY] Proxy failed: Page.goto: net::ERR_PROXY_CONNECTION_FAI
-[PLAYWRIGHT_PROXY] Proxy failed: Page.goto: net::ERR_PROXY_CONNECTION_FAI
+[FLARESOLVERR] Requesting https://twidouga.net/realtime_t.php...
+[FLARESOLVERR] Success! Got 246646 bytes
+[FLARESOLVERR] Got response but no twitter content
+[FLARESOLVERR] First 500 chars: <html dir="ltr" lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,
+                                 maximum-scale=1.0, user-scalable=no">
+  <title>www.twidouga.net</title>
+  <style>/* Copyright 2017 The Chromium Authors
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
 
-[FALLBACK] All methods failed, using GitHub cache...
-[GITHUB_CACHE] Fetching cached data...
-[GITHUB_CACHE] Found 30 cached videos
+a {
+  color: var
+[FLARESOLVERR] Requesting https://twidouga.net/ko/realtime_t.php...
+[FLARESOLVERR] Success! Got 246646 bytes
+[FLARESOLVERR] Got response but no twitter content
+[FLARESOLVERR] First 500 chars: <html dir="ltr" lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,
+                                 maximum-scale=1.0, user-scalable=no">
+  <title>www.twidouga.net</title>
+  <style>/* Copyright 2017 The Chromium Authors
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+a {
+  color: var
+[NITTER] Scanning 5 instances...
+[NITTER] https://nitter.privacydev.net failed: <urlopen error [Errno 111] Connection re
+[NITTER] https://nitter.poast.org failed: HTTP Error 403: Forbidden
+[NITTER] https://nitter.1d4.us failed: <urlopen error [Errno -5] No address ass
+[NITTER] https://xcancel.com failed: HTTP Error 403: Forbidden
+[NITTER] Total: 0 videos
+[GITHUB] Fetching from 1 sources...
+[GITHUB] github_pineapple: 30 videos
 
 === FINAL: 30 videos ===
-Sources: ['github_cache']
+Sources: ['github_pineapple']
