@@ -1,43 +1,59 @@
-name: Fetch Twitter Trending Videos
+name: Fetch Twitter Videos (Tor + Proxy)
 
 on:
   schedule:
-    # 15분마다 실행
-    - cron: '*/15 * * * *'
+    - cron: '*/15 * * * *'  # 15분마다
   push:
     branches: [main]
-  workflow_dispatch: # 수동 실행 가능
+  workflow_dispatch:
 
 jobs:
   fetch:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          
-      - name: Pull latest changes
-        run: git pull origin main || true
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: true
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install system dependencies (Tor)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y tor
+        sudo service tor start
+        sleep 5
+        echo "Tor started"
+    
+    - name: Install Python dependencies
+      run: |
+        pip install --upgrade pip
+        pip install requests pysocks curl_cffi playwright cloudscraper
+        playwright install chromium
+        playwright install-deps chromium
+    
+    - name: Run fetcher
+      id: fetch
+      run: |
+        python fetch_videos.py 2>&1 | tee debug.log
+        echo "result=$(cat videos.json | python -c 'import sys, json; print(json.load(sys.stdin).get(\"count\", 0))')" >> $GITHUB_OUTPUT
+      continue-on-error: true
+    
+    - name: Commit and push
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "actions@github.com"
         
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          
-      - name: Install dependencies
-        run: |
-          pip install nodriver cloudscraper curl_cffi playwright js2py
-          playwright install --with-deps chromium
-          
-      - name: Fetch videos from twidouga.net
-        run: python fetch_videos.py 2>&1 | tee debug.log
-        continue-on-error: false
-        
-      - name: Commit and push if changed
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+        # 변경 사항이 있으면 커밋
+        if [[ -n $(git status -s videos.json urls.txt) ]]; then
           git add videos.json urls.txt debug.log
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update videos $(date -u +'%Y-%m-%d %H:%M UTC')" && git push)
+          git commit -m "Update: ${{ steps.fetch.outputs.result }} videos @ $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
+        else
+          echo "No changes to commit"
+        fi
