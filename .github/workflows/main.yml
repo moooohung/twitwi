@@ -28,7 +28,7 @@ jobs:
           
       - name: Install dependencies
         run: |
-          pip install cloudscraper curl_cffi playwright playwright-stealth
+          pip install nodriver cloudscraper curl_cffi playwright js2py
           playwright install --with-deps chromium
           
       - name: Fetch videos from twidouga.net
