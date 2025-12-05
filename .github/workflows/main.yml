@@ -1,8 +1,8 @@
-name: Fetch Twitter Videos (FlareSolverr + Nitter)
+name: Fetch TikTok & Twitter Videos
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '0 */6 * * *'  # 6시간마다 (TikTok은 자주 안 해도 됨)
   push:
     branches: [main]
   workflow_dispatch:
@@ -11,12 +11,6 @@ jobs:
   fetch:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
-    services:
-      flaresolverr:
-        image: ghcr.io/flaresolverr/flaresolverr:latest
-        ports:
-          - 8191:8191
 
     steps:
     - uses: actions/checkout@v4
@@ -31,21 +25,30 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip
-        pip install requests
+        pip install yt-dlp requests
 
-    - name: Wait for FlareSolverr
+    - name: Fetch TikTok videos
+      id: tiktok
       run: |
-        echo "Waiting for FlareSolverr to start..."
-        sleep 15
-        curl -s http://localhost:8191/v1 -X POST -H "Content-Type: application/json" -d '{"cmd":"request.get","url":"https://www.google.com","maxTimeout":5000}' | head -c 200
+        echo "=== Fetching TikTok ===" 
+        python fetch_tiktok.py 2>&1 | tee tiktok_debug.log
+        if [ -f tiktok.json ]; then
+          echo "tiktok_count=$(cat tiktok.json | python -c 'import sys, json; print(json.load(sys.stdin).get(\"count\", 0))')" >> $GITHUB_OUTPUT
+        else
+          echo "tiktok_count=0" >> $GITHUB_OUTPUT
+        fi
+      continue-on-error: true
 
-    - name: Run fetcher
-      id: fetch
-      env:
-        SCRAPFLY_KEY: ${{ secrets.SCRAPFLY_KEY }}
+    - name: Fetch Twitter videos (fallback)
+      id: twitter
       run: |
-        python fetch_videos.py 2>&1 | tee debug.log
-        echo "result=$(cat videos.json | python -c 'import sys, json; print(json.load(sys.stdin).get(\"count\", 0))')" >> $GITHUB_OUTPUT
+        echo "=== Fetching Twitter ===" 
+        python fetch_videos.py 2>&1 | tee twitter_debug.log
+        if [ -f videos.json ]; then
+          echo "twitter_count=$(cat videos.json | python -c 'import sys, json; print(json.load(sys.stdin).get(\"count\", 0))')" >> $GITHUB_OUTPUT
+        else
+          echo "twitter_count=0" >> $GITHUB_OUTPUT
+        fi
       continue-on-error: true
 
     - name: Commit and push
@@ -53,9 +56,11 @@ jobs:
         git config user.name "GitHub Actions Bot"
         git config user.email "actions@github.com"
         
-        if [[ -n $(git status -s videos.json urls.txt) ]]; then
-          git add videos.json urls.txt debug.log
-          git commit -m "Update: ${{ steps.fetch.outputs.result }} videos @ $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+        # 변경된 파일 추가
+        git add -A
+        
+        if [[ -n $(git status --porcelain) ]]; then
+          git commit -m "Update: TikTok=${{ steps.tiktok.outputs.tiktok_count }}, Twitter=${{ steps.twitter.outputs.twitter_count }} @ $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
         else
           echo "No changes to commit"
