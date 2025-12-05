@@ -1,8 +1,8 @@
-name: Fetch Twitter Videos (Tor + Proxy)
+name: Fetch Twitter Videos (FlareSolverr + Nitter)
 
 on:
   schedule:
-    - cron: '*/15 * * * *'  # 15분마다
+    - cron: '*/15 * * * *'
   push:
     branches: [main]
   workflow_dispatch:
@@ -10,46 +10,49 @@ on:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    
+    timeout-minutes: 15
+
+    services:
+      flaresolverr:
+        image: ghcr.io/flaresolverr/flaresolverr:latest
+        ports:
+          - 8191:8191
+
     steps:
     - uses: actions/checkout@v4
       with:
         persist-credentials: true
-    
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-    
-    - name: Install system dependencies (Tor)
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y tor
-        sudo service tor start
-        sleep 5
-        echo "Tor started"
-    
-    - name: Install Python dependencies
+
+    - name: Install dependencies
       run: |
         pip install --upgrade pip
-        pip install requests pysocks curl_cffi playwright cloudscraper
-        playwright install chromium
-        playwright install-deps chromium
-    
+        pip install requests
+
+    - name: Wait for FlareSolverr
+      run: |
+        echo "Waiting for FlareSolverr to start..."
+        sleep 15
+        curl -s http://localhost:8191/v1 -X POST -H "Content-Type: application/json" -d '{"cmd":"request.get","url":"https://www.google.com","maxTimeout":5000}' | head -c 200
+
     - name: Run fetcher
       id: fetch
+      env:
+        SCRAPFLY_KEY: ${{ secrets.SCRAPFLY_KEY }}
       run: |
         python fetch_videos.py 2>&1 | tee debug.log
         echo "result=$(cat videos.json | python -c 'import sys, json; print(json.load(sys.stdin).get(\"count\", 0))')" >> $GITHUB_OUTPUT
       continue-on-error: true
-    
+
     - name: Commit and push
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "actions@github.com"
         
-        # 변경 사항이 있으면 커밋
         if [[ -n $(git status -s videos.json urls.txt) ]]; then
           git add videos.json urls.txt debug.log
           git commit -m "Update: ${{ steps.fetch.outputs.result }} videos @ $(date -u +%Y-%m-%dT%H:%M:%SZ)"
