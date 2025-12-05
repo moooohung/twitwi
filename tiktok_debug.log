@@ -1,43 +1,13 @@
-[YTDLP] Fetching from popular accounts...
-  @bts_official_bighit: 7568467338702376199
-  @bts_official_bighit: 7565127603405835528
-  @bts_official_bighit: 7541361795223768328
-  @blackpinkofficial: 6971274906893847810
-  @blackpinkofficial: 6969513321129168129
-  @blackpinkofficial: 6969410037873642754
-  @twice_tiktok_official: 7579121567670586644
-  @twice_tiktok_official: 7577605847099116821
-  @twice_tiktok_official: 7577605741129862420
-  @bayashi.tiktok: 7579973198587137298
-  @bayashi.tiktok: 7578811534227426568
-  @bayashi.tiktok: 7577916002021772552
-  @mrbeast: 7578547467189374239
-  @mrbeast: 7575228146845240606
-  @mrbeast: 7572365808861515039
-  @charlidamelio: 7574599985963011341
-  @charlidamelio: 7574130142453304607
-  @charlidamelio: 7567517005901761822
-  @addisonre: 7575400887850454286
-  @addisonre: 7567185315899755831
-  @addisonre: 7564887553241828663
-  @bellapoarch: 7570410850163477790
-  @bellapoarch: 7569045236752583967
-  @bellapoarch: 7565936824535797023
-  @zachking: 7575201491011636535
-  @zachking: 7573719179098869006
-  @zachking: 7572618039976398135
-  @willsmith: 7552579550782197047
-  @willsmith: 7545914679911107854
-  @willsmith: 7544163314788519181
-  @therock: 7578905061170941197
-  @therock: 7577795012692331790
-  @therock: 7576302913060883767
+[PROXITOK] Scanning trending pages...
+  https://proxitok.pabloferreiro.es: HTTP Error 502: Bad Gateway
+  https://tok.habedieeh.re: HTTP Error 404: Not Found
+  https://proxitok.lunar.icu: <urlopen error [SSL: CERTIFICATE_VERIFY_
+  https://tik.hostux.net: <urlopen error [Errno -2] Name or servic
+  https://proxitok.privacy.qvarford.net: <urlopen error [Errno -2] Name or servic
+  https://tok.artemislena.eu: <urlopen error [SSL: TLSV1_ALERT_INTERNA
+[PROXITOK] Total: 0 trending videos
+[YTDLP] Fetching from trending hashtags: ['foryou', 'food', 'challenge', 'dance', 'funny']
+[YTDLP] Total from hashtags: 0 videos
 
-[YTDLP] Got 33 videos
-[API] Trying ProxiTok instances...
-  https://proxitok.pabloferreiro.es/api/trending: HTTP Error 502: Bad Gateway
-  https://proxitok.privacy.qvarford.net/trending: <urlopen error [Errno -2] Name
-[API] Got 0 additional videos
-
-=== FINAL: 33 TikTok videos ===
-Sources: ['ytdlp_account']
+=== FINAL: 0 TikTok trending videos ===
+Sources: []
