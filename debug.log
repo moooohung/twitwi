@@ -1,30 +1,21 @@
-[INFO] Fetching https://twidouga.net/realtime_t.php...
+[INFO] Fetching https://twidouga.net/realtime_t.php with stealth...
+[WARN] Main page failed: Page.goto: net::ERR_TOO_MANY_REDIRECTS at https://twidouga.net/
+Call log:
+  - navigating to "https://twidouga.net/", waiting until "domcontentloaded"
+
 [ERROR] Failed to fetch https://twidouga.net/realtime_t.php: Page.goto: net::ERR_TOO_MANY_REDIRECTS at https://twidouga.net/realtime_t.php
 Call log:
-  - navigating to "https://twidouga.net/realtime_t.php", waiting until "networkidle"
+  - navigating to "https://twidouga.net/realtime_t.php", waiting until "domcontentloaded"
 
-[INFO] Fetching https://twidouga.net/ko/realtime_t.php...
+[INFO] Fetching https://twidouga.net/ko/realtime_t.php with stealth...
+[WARN] Main page failed: Page.goto: net::ERR_TOO_MANY_REDIRECTS at https://twidouga.net/
+Call log:
+  - navigating to "https://twidouga.net/", waiting until "domcontentloaded"
+
 [ERROR] Failed to fetch https://twidouga.net/ko/realtime_t.php: Page.goto: net::ERR_TOO_MANY_REDIRECTS at https://twidouga.net/ko/realtime_t.php
 Call log:
-  - navigating to "https://twidouga.net/ko/realtime_t.php", waiting until "networkidle"
+  - navigating to "https://twidouga.net/ko/realtime_t.php", waiting until "domcontentloaded"
 
-[INFO] Fetching https://twidouga.net/ranking_t.php...
-[ERROR] Failed to fetch https://twidouga.net/ranking_t.php: Page.goto: net::ERR_TOO_MANY_REDIRECTS at https://twidouga.net/ranking_t.php
-Call log:
-  - navigating to "https://twidouga.net/ranking_t.php", waiting until "networkidle"
-
-[INFO] Twidouga failed, trying Nitter mirrors...
-[INFO] Trying Nitter: https://nitter.privacydev.net/search?f=videos&q=lang%3Ako&src=typed_query
-[ERROR] Nitter https://nitter.privacydev.net failed: Page.goto: net::ERR_CONNECTION_REFUSED at https://nitter.privacydev.net/search?f=videos&q=lang%3Ako&src=typed_query
-Call log:
-  - navigating to "https://nitter.privacydev.net/search?f=videos&q=lang%3Ako&src=typed_query", waiting until "domcontentloaded"
-
-[INFO] Trying Nitter: https://nitter.poast.org/search?f=videos&q=lang%3Ako&src=typed_query
-[WARN] Nitter returned status: 403
-[INFO] Trying Nitter: https://nitter.woodland.cafe/search?f=videos&q=lang%3Ako&src=typed_query
-[ERROR] Nitter https://nitter.woodland.cafe failed: Page.goto: Timeout 30000ms exceeded.
-Call log:
-  - navigating to "https://nitter.woodland.cafe/search?f=videos&q=lang%3Ako&src=typed_query", waiting until "domcontentloaded"
-
+[WARN] No videos found from any source
 [INFO] Saved 0 videos to videos.json
 [INFO] Saved 0 URLs to urls.txt
