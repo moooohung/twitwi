@@ -32,12 +32,12 @@ jobs:
           playwright install --with-deps chromium
           
       - name: Fetch videos from twidouga.net
-        run: python fetch_videos.py
+        run: python fetch_videos.py 2>&1 | tee debug.log
         continue-on-error: false
         
       - name: Commit and push if changed
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add videos.json urls.txt
+          git add videos.json urls.txt debug.log
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update videos $(date -u +'%Y-%m-%d %H:%M UTC')" && git push)
