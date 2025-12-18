@@ -3,7 +3,8 @@
 [NITTER] Trying 8 instances...
 [NITTER] https://nitter.privacydev.net: <urlopen error [Errno 111] Con
 [NITTER] https://nitter.poast.org: HTTP Error 403: Forbidden
-[NITTER] https://xcancel.com: <urlopen error [SSL: UNEXPECTE
+[NITTER] https://xcancel.com: HTTP Error 403: Forbidden
+[NITTER] https://nitter.cz: HTTP Error 500: Internal Serve
 [NITTER] https://nitter.esmailelbob.xyz: <urlopen error [Errno -5] No a
 [NITTER] https://nitter.dasakamern.de: <urlopen error [Errno -2] Name
 [NITTER] https://nitter.woodland.cafe: <urlopen error timed out>
