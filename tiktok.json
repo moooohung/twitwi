@@ -1,51 +1,27 @@
 {
-  "updated_at": "2025-12-25T02:03:20.015717+00:00",
+  "updated_at": "2025-12-25T06:40:12.656089+00:00",
   "count": 36,
   "platform": "tiktok",
   "type": "trending_random",
   "sources_used": [
-    "curated_education",
+    "curated_food",
+    "curated_dance",
     "curated_animals",
     "curated_meme",
-    "curated_gaming",
-    "curated_vlog",
+    "curated_education",
     "curated_asmr",
-    "curated_kpop",
+    "curated_gaming",
     "curated_sports",
-    "curated_viral",
-    "curated_food",
-    "curated_dance"
+    "curated_vlog",
+    "curated_kpop",
+    "curated_viral"
   ],
   "videos": [
     {
-      "id": "7334166408158055718",
-      "url": "https://www.tiktok.com/@khaby.lame/video/7334166408158055718",
-      "title": "Khaby Lame",
-      "source": "curated_viral"
-    },
-    {
-      "id": "7303456789012345678",
-      "url": "https://www.tiktok.com/@pokimane/video/7303456789012345678",
-      "title": "Pokimane",
-      "source": "curated_gaming"
-    },
-    {
-      "id": "7326543210987654321",
-      "url": "https://www.tiktok.com/@nasa/video/7326543210987654321",
-      "title": "NASA 우주",
-      "source": "curated_education"
-    },
-    {
-      "id": "7314567890123456789",
-      "url": "https://www.tiktok.com/@nba/video/7314567890123456789",
-      "title": "NBA 클립",
-      "source": "curated_sports"
-    },
-    {
-      "id": "7313456789012345678",
-      "url": "https://www.tiktok.com/@espn/video/7313456789012345678",
-      "title": "ESPN 하이라이트",
-      "source": "curated_sports"
+      "id": "7315892341567890234",
+      "url": "https://www.tiktok.com/@dogsofinstagram/video/7315892341567890234",
+      "title": "Dogs Compilation",
+      "source": "curated_animals"
     },
     {
       "id": "7302568933399665962",
@@ -54,16 +30,16 @@
       "source": "curated_animals"
     },
     {
-      "id": "7305825915128743210",
-      "url": "https://www.tiktok.com/@meowed/video/7305825915128743210",
-      "title": "귀여운 고양이",
-      "source": "curated_animals"
+      "id": "7275432109876543210",
+      "url": "https://www.tiktok.com/@lorengray/video/7275432109876543210",
+      "title": "Loren Gray",
+      "source": "curated_vlog"
     },
     {
-      "id": "7324321098765432109",
-      "url": "https://www.tiktok.com/@newjeans_official/video/7324321098765432109",
-      "title": "NewJeans",
-      "source": "curated_kpop"
+      "id": "7282345678901234567",
+      "url": "https://www.tiktok.com/@daquan/video/7282345678901234567",
+      "title": "Daquan 밈",
+      "source": "curated_meme"
     },
     {
       "id": "7320123456789012345",
@@ -72,58 +48,10 @@
       "source": "curated_dance"
     },
     {
-      "id": "7289456789012345678",
-      "url": "https://www.tiktok.com/@charlidamelio/video/7289456789012345678",
-      "title": "Charli 댄스",
-      "source": "curated_dance"
-    },
-    {
-      "id": "7316789012345678901",
-      "url": "https://www.tiktok.com/@brittany.broski/video/7316789012345678901",
-      "title": "Brittany Broski",
-      "source": "curated_meme"
-    },
-    {
-      "id": "7285678901234567890",
-      "url": "https://www.tiktok.com/@brentrivera/video/7285678901234567890",
-      "title": "Brent Rivera",
-      "source": "curated_viral"
-    },
-    {
-      "id": "7312345678901234567",
-      "url": "https://www.tiktok.com/@nick.digiovanni/video/7312345678901234567",
-      "title": "Nick DiGiovanni",
-      "source": "curated_food"
-    },
-    {
-      "id": "7278901234567890123",
-      "url": "https://www.tiktok.com/@zachking/video/7278901234567890123",
-      "title": "Zach King 마술",
-      "source": "curated_viral"
-    },
-    {
-      "id": "7296789012345678901",
-      "url": "https://www.tiktok.com/@blackpinkofficial/video/7296789012345678901",
-      "title": "BLACKPINK",
-      "source": "curated_kpop"
-    },
-    {
-      "id": "7321098765432109876",
-      "url": "https://www.tiktok.com/@valkyrae/video/7321098765432109876",
-      "title": "Valkyrae",
-      "source": "curated_gaming"
-    },
-    {
-      "id": "7292345678901234567",
-      "url": "https://www.tiktok.com/@sykunno/video/7292345678901234567",
-      "title": "Sykkuno 게임",
-      "source": "curated_gaming"
-    },
-    {
-      "id": "7318456789012345678",
-      "url": "https://www.tiktok.com/@catsoftiktok/video/7318456789012345678",
-      "title": "Cats Compilation",
-      "source": "curated_animals"
+      "id": "7294567890123456789",
+      "url": "https://www.tiktok.com/@slimequeens/video/7294567890123456789",
+      "title": "슬라임 ASMR",
+      "source": "curated_asmr"
     },
     {
       "id": "7268765432109876543",
@@ -132,15 +60,135 @@
       "source": "curated_vlog"
     },
     {
-      "id": "7275432109876543210",
-      "url": "https://www.tiktok.com/@lorengray/video/7275432109876543210",
-      "title": "Loren Gray",
+      "id": "7301234567890123456",
+      "url": "https://www.tiktok.com/@foodbeast/video/7301234567890123456",
+      "title": "푸드 ASMR",
+      "source": "curated_food"
+    },
+    {
+      "id": "7292345678901234567",
+      "url": "https://www.tiktok.com/@sykunno/video/7292345678901234567",
+      "title": "Sykkuno 게임",
+      "source": "curated_gaming"
+    },
+    {
+      "id": "7278901234567890123",
+      "url": "https://www.tiktok.com/@zachking/video/7278901234567890123",
+      "title": "Zach King 마술",
+      "source": "curated_viral"
+    },
+    {
+      "id": "7318456789012345678",
+      "url": "https://www.tiktok.com/@catsoftiktok/video/7318456789012345678",
+      "title": "Cats Compilation",
+      "source": "curated_animals"
+    },
+    {
+      "id": "7308901234567890123",
+      "url": "https://www.tiktok.com/@gordonramsayofficial/video/7308901234567890123",
+      "title": "Gordon Ramsay",
+      "source": "curated_food"
+    },
+    {
+      "id": "7305678901234567890",
+      "url": "https://www.tiktok.com/@cookingbomb/video/7305678901234567890",
+      "title": "요리 레시피",
+      "source": "curated_food"
+    },
+    {
+      "id": "7319876543210987654",
+      "url": "https://www.tiktok.com/@kallmekris/video/7319876543210987654",
+      "title": "Kallme Kris",
+      "source": "curated_meme"
+    },
+    {
+      "id": "7287654321098765432",
+      "url": "https://www.tiktok.com/@oddlysatisfying/video/7287654321098765432",
+      "title": "Satisfying 영상",
+      "source": "curated_asmr"
+    },
+    {
+      "id": "7295678901234567890",
+      "url": "https://www.tiktok.com/@addisoneasterling/video/7295678901234567890",
+      "title": "Addison 댄스",
+      "source": "curated_dance"
+    },
+    {
+      "id": "7314567890123456789",
+      "url": "https://www.tiktok.com/@nba/video/7314567890123456789",
+      "title": "NBA 클립",
+      "source": "curated_sports"
+    },
+    {
+      "id": "7296789012345678901",
+      "url": "https://www.tiktok.com/@blackpinkofficial/video/7296789012345678901",
+      "title": "BLACKPINK",
+      "source": "curated_kpop"
+    },
+    {
+      "id": "7299403937673367855",
+      "url": "https://www.tiktok.com/@bellapoarch/video/7299403937673367855",
+      "title": "Bella Poarch",
+      "source": "curated_viral"
+    },
+    {
+      "id": "7317654321098765432",
+      "url": "https://www.tiktok.com/@relaxingsounds/video/7317654321098765432",
+      "title": "Relaxing Sounds",
+      "source": "curated_asmr"
+    },
+    {
+      "id": "7312345678901234567",
+      "url": "https://www.tiktok.com/@nick.digiovanni/video/7312345678901234567",
+      "title": "Nick DiGiovanni",
+      "source": "curated_food"
+    },
+    {
+      "id": "7289456789012345678",
+      "url": "https://www.tiktok.com/@charlidamelio/video/7289456789012345678",
+      "title": "Charli 댄스",
+      "source": "curated_dance"
+    },
+    {
+      "id": "7322109876543210987",
+      "url": "https://www.tiktok.com/@addisonre/video/7322109876543210987",
+      "title": "Addison Rae",
       "source": "curated_vlog"
+    },
+    {
+      "id": "7305825915128743210",
+      "url": "https://www.tiktok.com/@meowed/video/7305825915128743210",
+      "title": "귀여운 고양이",
+      "source": "curated_animals"
+    },
+    {
+      "id": "7303456789012345678",
+      "url": "https://www.tiktok.com/@pokimane/video/7303456789012345678",
+      "title": "Pokimane",
+      "source": "curated_gaming"
+    },
+    {
+      "id": "7324321098765432109",
+      "url": "https://www.tiktok.com/@newjeans_official/video/7324321098765432109",
+      "title": "NewJeans",
+      "source": "curated_kpop"
     },
     {
       "id": "7325432109876543210",
       "url": "https://www.tiktok.com/@billnye/video/7325432109876543210",
       "title": "Bill Nye 과학",
+      "source": "curated_education"
+    },
+    {
+      "id": "7285678901234567890",
+      "url": "https://www.tiktok.com/@brentrivera/video/7285678901234567890",
+      "title": "Brent Rivera",
+      "source": "curated_viral"
+    },
+    {
+      "id": "7326543210987654321",
+      "url": "https://www.tiktok.com/@nasa/video/7326543210987654321",
+      "title": "NASA 우주",
       "source": "curated_education"
     },
     {
@@ -150,76 +198,10 @@
       "source": "curated_animals"
     },
     {
-      "id": "7317654321098765432",
-      "url": "https://www.tiktok.com/@relaxingsounds/video/7317654321098765432",
-      "title": "Relaxing Sounds",
-      "source": "curated_asmr"
-    },
-    {
-      "id": "7322109876543210987",
-      "url": "https://www.tiktok.com/@addisonre/video/7322109876543210987",
-      "title": "Addison Rae",
-      "source": "curated_vlog"
-    },
-    {
-      "id": "7308901234567890123",
-      "url": "https://www.tiktok.com/@gordonramsayofficial/video/7308901234567890123",
-      "title": "Gordon Ramsay",
-      "source": "curated_food"
-    },
-    {
-      "id": "7299403937673367855",
-      "url": "https://www.tiktok.com/@bellapoarch/video/7299403937673367855",
-      "title": "Bella Poarch",
-      "source": "curated_viral"
-    },
-    {
-      "id": "7282345678901234567",
-      "url": "https://www.tiktok.com/@daquan/video/7282345678901234567",
-      "title": "Daquan 밈",
+      "id": "7316789012345678901",
+      "url": "https://www.tiktok.com/@brittany.broski/video/7316789012345678901",
+      "title": "Brittany Broski",
       "source": "curated_meme"
-    },
-    {
-      "id": "7323210987654321098",
-      "url": "https://www.tiktok.com/@straykids_official/video/7323210987654321098",
-      "title": "Stray Kids",
-      "source": "curated_kpop"
-    },
-    {
-      "id": "7294567890123456789",
-      "url": "https://www.tiktok.com/@slimequeens/video/7294567890123456789",
-      "title": "슬라임 ASMR",
-      "source": "curated_asmr"
-    },
-    {
-      "id": "7315892341567890234",
-      "url": "https://www.tiktok.com/@dogsofinstagram/video/7315892341567890234",
-      "title": "Dogs Compilation",
-      "source": "curated_animals"
-    },
-    {
-      "id": "7295678901234567890",
-      "url": "https://www.tiktok.com/@addisoneasterling/video/7295678901234567890",
-      "title": "Addison 댄스",
-      "source": "curated_dance"
-    },
-    {
-      "id": "7287654321098765432",
-      "url": "https://www.tiktok.com/@oddlysatisfying/video/7287654321098765432",
-      "title": "Satisfying 영상",
-      "source": "curated_asmr"
-    },
-    {
-      "id": "7305678901234567890",
-      "url": "https://www.tiktok.com/@cookingbomb/video/7305678901234567890",
-      "title": "요리 레시피",
-      "source": "curated_food"
-    },
-    {
-      "id": "7301234567890123456",
-      "url": "https://www.tiktok.com/@foodbeast/video/7301234567890123456",
-      "title": "푸드 ASMR",
-      "source": "curated_food"
     },
     {
       "id": "7290123456789012345",
@@ -228,10 +210,28 @@
       "source": "curated_kpop"
     },
     {
-      "id": "7319876543210987654",
-      "url": "https://www.tiktok.com/@kallmekris/video/7319876543210987654",
-      "title": "Kallme Kris",
-      "source": "curated_meme"
+      "id": "7323210987654321098",
+      "url": "https://www.tiktok.com/@straykids_official/video/7323210987654321098",
+      "title": "Stray Kids",
+      "source": "curated_kpop"
+    },
+    {
+      "id": "7313456789012345678",
+      "url": "https://www.tiktok.com/@espn/video/7313456789012345678",
+      "title": "ESPN 하이라이트",
+      "source": "curated_sports"
+    },
+    {
+      "id": "7334166408158055718",
+      "url": "https://www.tiktok.com/@khaby.lame/video/7334166408158055718",
+      "title": "Khaby Lame",
+      "source": "curated_viral"
+    },
+    {
+      "id": "7321098765432109876",
+      "url": "https://www.tiktok.com/@valkyrae/video/7321098765432109876",
+      "title": "Valkyrae",
+      "source": "curated_gaming"
     }
   ]
 }
