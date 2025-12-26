@@ -3,7 +3,7 @@
 [PROXITOK] Scanning trending pages...
   https://proxitok.pabloferreiro.es: HTTP Error 502: Bad Gateway
   https://tok.habedieeh.re: HTTP Error 404: Not Found
-  https://proxitok.lunar.icu: HTTP Error 502: Bad Gateway
+  https://proxitok.lunar.icu: <urlopen error [Errno 104] Connection re
   https://tik.hostux.net: <urlopen error [Errno -2] Name or servic
   https://proxitok.privacy.qvarford.net: <urlopen error [Errno -2] Name or servic
   https://tok.artemislena.eu: <urlopen error [SSL: TLSV1_ALERT_INTERNA
@@ -12,4 +12,4 @@
 [YTDLP] Total from hashtags: 0 videos
 
 === FINAL: 36 TikTok trending videos ===
-Sources: ['curated_education', 'curated_food', 'curated_animals', 'curated_kpop', 'curated_meme', 'curated_gaming', 'curated_vlog', 'curated_asmr', 'curated_dance', 'curated_sports', 'curated_viral']
+Sources: ['curated_viral', 'curated_asmr', 'curated_kpop', 'curated_sports', 'curated_gaming', 'curated_meme', 'curated_dance', 'curated_animals', 'curated_education', 'curated_food', 'curated_vlog']
